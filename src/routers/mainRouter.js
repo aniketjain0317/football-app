@@ -10,6 +10,11 @@ router.get('', (req, res) =>
     res.render('register')
 })
 
+router.get('/game', (req,res) =>
+{
+    res.render('football')
+})
+
 router.post('/team', async (req,res) =>
 {
   const team = new Team(req.body)
@@ -20,16 +25,17 @@ router.post('/team', async (req,res) =>
   } catch(e) { res.status(400).send(e) }
 })
 
-router.get('/team/:num', async (req,res) =>
+router.get('/team', async (req,res) =>
 {
     try
     {
-        const num = req.params.num
-        if(!teamEntered[num]) {throw new Error()}
+
+        const num = parseInt(req.query.num)
+        console.log(num)
         const team = await Team.findOne({num})
-        if(!team) {throw new Error()}
+        if(!team) {throw new Error('def')}
         res.send(team)
-    } catch(e) {res.status(404).send()}
+    } catch(e) {res.status(404).send(e.message)}
 })
 
 

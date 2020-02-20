@@ -9,9 +9,10 @@ function postRequest(url, data) {
     }).then(response => response.json())
   }
 
-
+const submit = document.querySelector('#submit')
 submit.addEventListener("click", async (event) => {
-    var name = document.getElementById("TEAM 1").value || 1;
+    event.preventDefault()
+    var name = document.getElementById("TEAM 1").value;
     var num = document.getElementById("TEAM NUMBER").value;
     var GK = document.getElementById("TEAM 1 GK").value;
     var LB = document.getElementById("TEAM 1 LB").value;
@@ -24,11 +25,12 @@ submit.addEventListener("click", async (event) => {
     var LW = document.getElementById("TEAM 1 LW").value;
     var CF = document.getElementById("TEAM 1 CF").value;
     var RW = document.getElementById("TEAM 1 RW").value;
-    
+    num = parseInt(num)
     var team  = {name,num,GK,LB,CB1,CB2,RB,LM,CM,RM,LW,CF,RW}
-    
+    console.log(team)
     try
     {
-        const data = await postRequest('/team/'+num, team)
+        const data = await postRequest('/team', team)
+        console.log(data)
     } catch(e) {console.log(e)}
 })

@@ -7,9 +7,9 @@ const teamSchema = new mongoose.Schema
         required: true,
         type: String
     },
-    number:
+    num:
     {
-        // required: true,
+        required: true,
         type: Number
     },
 
