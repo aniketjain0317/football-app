@@ -6,8 +6,7 @@ function postRequest(url, data) {
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
-    });
-    .then(response => response.json())
+    }).then(response => response.json())
   }
 
 
@@ -31,5 +30,5 @@ submit.addEventListener("click", async (event) => {
     try
     {
         const data = await postRequest('/team/'+num, team)
-    }
+    } catch(e) {console.log(e)}
 })
